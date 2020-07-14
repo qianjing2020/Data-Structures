@@ -48,40 +48,27 @@ class Queue:
         self.size = 0
 
     def __len__(self):
-        if self.storage.head == None:
-            self.size = 0
-        self.size = 1    
-        current_node = self.storage.head
-        while current_node is not self.storage.tail: 
-            current_node = current_node.get_next()
-            self.size += 1
         return self.size
 
     def enqueue(self, value):
-        # use linked list head to enqueue
-
-        new_head = Node(value, self.storage.head)
-        self.storage.head = new_head
-              
+        # Easiest solution is to use linked list tail to enqueue
+        self.size += 1  
+        self.storage.add_to_tail(value)
+        # # # use linked list tail to enqueue
+        #  self.storage.add_to_head(value)
+             
         
     def dequeue(self):
-        # use linked list end to dequeue
-        if not self.storage.head:
-            # empty queue
-            value_dequeue = None
+        # # use linked list tail to dequeue
+        # if self.size ==0:
+        #     return None
+        # self.size -=1
+        # value_dequeue = self.storage.remove_tail()               
+        # return value_dequeue
 
-        # one item queue
-        elif self.storage.head is self.storage.tail:
-            value_dequeue = self.storage.head.get_value()
-            print(value_dequeue)
-            self.storage.head = None
-            self.storage.tail = None
-            return value_dequeue
-
-        else: # more than 1 item in queue
-            value_dequeue = self.storage.tail.get_value()
-            self.storage.remove_tail()
-            
+        # here is a easier solution: dequeue from head:
+        if self.size == 0:
+            return None
+        self.size -= 1
+        value_dequeue = self.storage.remove_head()        
         return value_dequeue
-                
-        # self.storage.remove_tail()        
