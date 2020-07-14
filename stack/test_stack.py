@@ -11,7 +11,9 @@ class QueueTests(unittest.TestCase):
     def test_len_returns_correct_length_after_push(self):
         self.assertEqual(len(self.stack), 0)
         self.stack.push(2)
+        print(f"*******len is {len(self.stack)}")
         self.assertEqual(len(self.stack), 1)
+        
         self.stack.push(4)
         self.assertEqual(len(self.stack), 2)
         self.stack.push(6)
